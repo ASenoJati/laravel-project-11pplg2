@@ -24,4 +24,9 @@ class ProfileController extends Controller
 
         return view("profil", $data);
     }
+
+    public function home()
+    {
+        return view("home");
+    }
 }
