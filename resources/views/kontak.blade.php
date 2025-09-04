@@ -1,5 +1,6 @@
 <x-layout>
-  <div class="bg-white rounded-2xl shadow-xl p-10 w-[500px] text-center border border-purple-200 fade-in hover:shadow-purple-300/70 transition">
+  <x-slot:judul>{{ $title }}</x-slot:judul>
+  <div class="bg-white rounded-2xl shadow-xl p-10 w-full text-center border border-purple-200 fade-in hover:shadow-purple-300/70 transition">
     <h1 class="text-3xl font-bold text-gray-700 mb-6">Kontak Saya</h1>
     <div class="space-y-4 text-gray-700">
       <p><strong>📍 Alamat:</strong> Jl. Merdeka No. 123, Jakarta</p>
