@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProfileController;
@@ -10,3 +11,4 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/student', [StudentController::class, 'index']);
 Route::get('/profil', [ProfileController::class, 'index']);
 Route::get('/kontak', [KontakController::class, 'index']);
+Route::get('/guardian', [GuardianController::class, 'index']);
