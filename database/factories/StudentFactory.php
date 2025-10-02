@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Classroom;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class StudentFactory extends Factory
             'name' => $this->faker->name(),
             'birthday' => $this->faker->date(),
             'gender' => $this->faker->randomElement(['Male', 'Female']),
-            'grade' => $this->faker->randomElement(['10 PPLG 1', '10 PPLG 2', '10 PPLG 3', '11 PPLG 1', '11 PPLG 2', '12 PPLG 1', '12 PPLG 2']),
+            'classroom_id' => Classroom::factory(),
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),
         ];
