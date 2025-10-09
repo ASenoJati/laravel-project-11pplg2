@@ -21,6 +21,10 @@
                             <x-nav-link href="{{ url('/profil') }}" :active="request()->is('profil')">Profile</x-nav-link>
 
                             <x-nav-link href="{{ url('/kontak') }}" :active="request()->is('kontak')">Kontak</x-nav-link>
+
+                            <x-nav-link href="{{ url('/teacher') }}" :active="request()->is('teacher')">Teacher</x-nav-link>
+
+                            <x-nav-link href="{{ url('/subject') }}" :active="request()->is('subject')">Subject</x-nav-link>
                         </div>
                     </div>
                 </div>
@@ -75,6 +79,8 @@
                 <x-nav-link-mobile href="{{ url('/classroom') }}" :active="request()->is('classroom')">Classroom</x-nav-link-mobile>
                 <x-nav-link-mobile href="{{ url('/profil') }}" :active="request()->is('profil')">Profile</x-nav-link-mobile>
                 <x-nav-link-mobile href="{{ url('/kontak') }}" :active="request()->is('kontak')">Kontak</x-nav-link-mobile>
+                <x-nav-link-mobile href="{{ url('/teacher') }}" :active="request()->is('teacher')">Teacher</x-nav-link-mobile>
+                <x-nav-link-mobile href="{{ url('/subject') }}" :active="request()->is('subject')">Subject</x-nav-link-mobile>
             </div>
             <div class="border-t border-white/10 pt-4 pb-3">
                 <div class="flex items-center px-5">
