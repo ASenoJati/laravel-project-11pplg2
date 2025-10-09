@@ -15,7 +15,7 @@ class SubjectController extends Controller
         $subjects = Subject::all();
 
         return view("subject", [
-            "title" => "Teacher",
+            "title" => "Subject",
             "subjects" => $subjects
         ]);
     }
