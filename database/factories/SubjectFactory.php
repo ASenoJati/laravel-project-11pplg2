@@ -17,11 +17,19 @@ class SubjectFactory extends Factory
      */
     public function definition(): array
     {
-
-        $name = $this->faker->unique()->randomElement(['WEB DEVELOPMENT', 'GAME DEVELOPMENT', 'MOBILE DEVELOPMENT', 'DESKTOP DEVELOPMENT', 'AI ENGINEERING']);
-
         return [
-            'name' => $name,
+            'name' => $this->faker->randomElement([
+                'Pemrograman Dasar',
+                'Algoritma & Struktur Data',
+                'Basis Data',
+                'Pemrograman Web',
+                'Jaringan Komputer',
+                'Sistem Operasi',
+                'Pemrograman Berorientasi Objek',
+                'Rekayasa Perangkat Lunak',
+                'Keamanan Informasi',
+                'Analisis & Perancangan Sistem',
+            ]),
             'description' => $this->faker->sentence(),
         ];
     }

@@ -19,7 +19,7 @@ class TeacherFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'subject_id' => Subject::factory(),
+            'subject_id' => Subject::inRandomOrder()->first()->id,
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),

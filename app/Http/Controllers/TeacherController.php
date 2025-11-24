@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::paginate(10);
+        $subjects = Subject::all();
 
-        return view("teacher", [
+        return view("admin.teacher.teacher", [
             "title" => "Teacher",
-            "teachers" => $teachers
+            "teachers" => $teachers,
+            "subjects" => $subjects
         ]);
     }
 
@@ -33,7 +36,8 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = Teacher::create($request->all());
+        return back()->with('success-create', "Teacher Data Berhasil di Ditambahkan");
     }
 
     /**
@@ -41,23 +45,21 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return response()->json($teacher);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Teacher $teacher)
-    {
-        //
-    }
+    public function edit(Teacher $teacher) {}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, string $id)
     {
-        //
+        Teacher::find($id)->update($request->all());
+        return back()->with('success-update', "Teacher Data Berhasil di Update");
     }
 
     /**
@@ -65,6 +67,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+        return back()->with('success-delete', "Teacher Data Berhasil di Hapus");
     }
 }
