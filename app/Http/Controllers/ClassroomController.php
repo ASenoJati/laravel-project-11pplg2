@@ -12,9 +12,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::all();
+        $classrooms = Classroom::withCount('students')->paginate(10);
 
-        return view("classroom", [
+        return view("admin.classroom.classroom", [
             "title" => "Classroom",
             "classrooms" => $classrooms
         ]);
@@ -33,38 +33,34 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $student = Classroom::create($request->all());
+        return back()->with('success-create', "Classroom Data Berhasil di Ditambahkan");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Classroom $classroom)
     {
-        //
+        return response()->json($classroom);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit(string $id) {}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        Classroom::find($id)->update($request->all());
+        return back()->with('success-update', "Classroom Data Berhasil di Update");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy(string $id) {}
 }
