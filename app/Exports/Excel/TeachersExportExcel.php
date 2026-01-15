@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exports;
+namespace App\Exports\Excel;
 
-use App\Models\Student;
+use App\Models\Teacher;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-class StudentsExport implements
+class TeachersExportExcel implements
     FromCollection,
     WithHeadings,
     WithMapping,
@@ -24,7 +24,7 @@ class StudentsExport implements
      */
     public function collection()
     {
-        return Student::all();
+        return Teacher::all();
     }
 
     public function headings(): array
@@ -32,24 +32,22 @@ class StudentsExport implements
         return [
             'No',
             'Nama Lengkap',
-            'Tanggal Lahir',
-            'Jenis Kelamin',
-            'Kelas',
             'Email',
-            'Alamat'
+            'Subject',
+            'Alamat',
+            'Phone'
         ];
     }
 
-    public function map($student): array
+    public function map($teacher): array
     {
         return [
-            $student->id,
-            $student->name,
-            $student->birthday,
-            $student->gender,
-            $student->classroom->name,
-            $student->email,
-            $student->address,
+            $teacher->id,
+            $teacher->name,
+            $teacher->email,
+            $teacher->subject->name,
+            $teacher->address,
+            $teacher->phone
         ];
     }
 
@@ -57,9 +55,9 @@ class StudentsExport implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $dataCount = Student::count(); // jumlah baris data
+                $dataCount = Teacher::count(); // jumlah baris data
                 $lastRow = $dataCount + 1;
-                $lastColumn = 'G';             // sesuaikan jumlah 
+                $lastColumn = 'F';             // sesuaikan jumlah 
                 $header    = "A1:{$lastColumn}1";
 
                 $cellRange = "A1:{$lastColumn}{$lastRow}";
